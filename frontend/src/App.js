@@ -49,9 +49,15 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
-
-    setStripeApiKey(data.stripeApiKey);
+    try {
+      const { data } = await axios.get("/api/v1/stripeapikey");
+      if (!data.stripeApiKey || data.stripeApiKey === "your_stripe_api_key") {
+        console.warn("Stripe API key is not configured. Payment functionality will not work.");
+      }
+      setStripeApiKey(data.stripeApiKey);
+    } catch (error) {
+      console.error("Failed to load Stripe API key. Payment functionality may not work.");
+    }
   }
 
   useEffect(() => {
@@ -180,9 +186,7 @@ function App() {
         />
 
         <Route
-          component={
-            window.location.pathname === "/process/payment" ? null : NotFound
-          }
+          component={NotFound}
         />
       </Switch>
 

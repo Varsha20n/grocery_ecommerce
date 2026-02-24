@@ -1,42 +1,48 @@
 import React from "react";
-import { ReactNavbar } from "overlay-navbar";
-import logo from "../../../images/logo.png";
-
-const options = {
-  burgerColorHover: "#eb4034",
-  logo,
-  logoWidth: "20vmax",
-  navColor1: "white",
-  logoHoverSize: "10px",
-  logoHoverColor: "#eb4034",
-  link1Text: "Home",
-  link2Text: "Products",
-  link3Text: "Contact",
-  link4Text: "About",
-  link1Url: "/",
-  link2Url: "/products",
-  link3Url: "/contact",
-  link4Url: "/about",
-  link1Size: "1.3vmax",
-  link1Color: "rgba(35, 35, 35,0.8)",
-  nav1justifyContent: "flex-end",
-  nav2justifyContent: "flex-end",
-  nav3justifyContent: "flex-start",
-  nav4justifyContent: "flex-start",
-  link1ColorHover: "#eb4034",
-  link1Margin: "1vmax",
-  profileIconUrl: "/login",
-  profileIconColor: "rgba(35, 35, 35,0.8)",
-  searchIconColor: "rgba(35, 35, 35,0.8)",
-  cartIconColor: "rgba(35, 35, 35,0.8)",
-  profileIconColorHover: "#eb4034",
-  searchIconColorHover: "#eb4034",
-  cartIconColorHover: "#eb4034",
-  cartIconMargin: "1vmax",
-};
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import SearchIcon from "@material-ui/icons/Search";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import PersonIcon from "@material-ui/icons/Person";
+import "./Header.css";
 
 const Header = () => {
-  return <ReactNavbar {...options} />;
+  const { cartItems } = useSelector((state) => state.cart);
+
+  return (
+    <header className="header">
+      <div className="logo">
+        <Link to="/">
+          <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Grocer" className="logo-img" />
+        </Link>
+        <Link to="/" className="logo-text">Grocer</Link>
+      </div>
+
+      <div className="search-box">
+        <input type="text" placeholder="Search products..." />
+        <SearchIcon className="search-icon" />
+      </div>
+
+      <nav className="nav-links">
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/products" className="nav-link">Products</Link>
+        <Link to="/contact" className="nav-link">Contact</Link>
+        <Link to="/about" className="nav-link">About</Link>
+      </nav>
+
+      <div className="header-icons">
+        <Link to="/login" className="icon-link">
+          <PersonIcon />
+        </Link>
+        <Link to="/cart" className="icon-link">
+          <ShoppingCartIcon />
+          {cartItems.length > 0 && (
+            <span className="cart-count">{cartItems.length}</span>
+          )}
+        </Link>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

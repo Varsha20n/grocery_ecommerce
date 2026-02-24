@@ -11,24 +11,35 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {
-    images = req.body.images;
+    images = req.body.images || [];
   }
 
   const imagesLinks = [];
 
-  for (let i = 0; i < images.length; i++) {
-    const result = await cloudinary.v2.uploader.upload(images[i], {
-      folder: "products",
-    });
+  // Only upload to Cloudinary if credentials are configured
+  if (process.env.CLOUDINARY_NAME && process.env.CLOUDINARY_NAME !== 'your_cloudinary_cloud_name') {
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
 
-    imagesLinks.push({
-      public_id: result.public_id,
-      url: result.secure_url,
-    });
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+  } else {
+    // Use provided URLs directly without Cloudinary upload
+    for (let i = 0; i < images.length; i++) {
+      imagesLinks.push({
+        public_id: `sample_${i}`,
+        url: images[i],
+      });
+    }
   }
 
   req.body.images = imagesLinks;
-  req.body.user = req.user.id;
+  req.body.user = req.user ? req.user.id : null;
 
   const product = await Product.create(req.body);
 
@@ -107,22 +118,35 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (images !== undefined) {
-    // Deleting Images From Cloudinary
-    for (let i = 0; i < product.images.length; i++) {
-      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    // Check if Cloudinary is configured
+    const cloudinaryConfigured = process.env.CLOUDINARY_NAME && 
+                                process.env.CLOUDINARY_NAME !== 'your_cloudinary_cloud_name';
+    
+    if (cloudinaryConfigured) {
+      // Deleting Images From Cloudinary
+      for (let i = 0; i < product.images.length; i++) {
+        await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+      }
     }
 
     const imagesLinks = [];
 
     for (let i = 0; i < images.length; i++) {
-      const result = await cloudinary.v2.uploader.upload(images[i], {
-        folder: "products",
-      });
+      if (cloudinaryConfigured) {
+        const result = await cloudinary.v2.uploader.upload(images[i], {
+          folder: "products",
+        });
 
-      imagesLinks.push({
-        public_id: result.public_id,
-        url: result.secure_url,
-      });
+        imagesLinks.push({
+          public_id: result.public_id,
+          url: result.secure_url,
+        });
+      } else {
+        imagesLinks.push({
+          public_id: `sample_${i}`,
+          url: images[i],
+        });
+      }
     }
 
     req.body.images = imagesLinks;
@@ -149,9 +173,12 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHander("Product not found", 404));
   }
 
-  // Deleting Images From Cloudinary
-  for (let i = 0; i < product.images.length; i++) {
-    await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+  // Check if Cloudinary is configured before trying to delete images
+  if (process.env.CLOUDINARY_NAME && 
+      process.env.CLOUDINARY_NAME !== 'your_cloudinary_cloud_name') {
+    for (let i = 0; i < product.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    }
   }
 
   await product.remove();

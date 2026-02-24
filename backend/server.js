@@ -48,18 +48,29 @@ process.on("uncaughtException", (err) => {
   });
   
 
+const path = require("path");
+
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "backend/config/config.env" });
+  require("dotenv").config({ path: path.join(__dirname, "config/config.env") });
 }
 
 
 // Connecting to database
 connectDatabase();
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+
+// Configure Cloudinary only if valid credentials are provided
+if (process.env.CLOUDINARY_NAME && 
+    process.env.CLOUDINARY_NAME !== 'your_cloudinary_cloud_name' &&
+    process.env.CLOUDINARY_API_KEY && 
+    process.env.CLOUDINARY_API_KEY !== 'your_cloudinary_api_key') {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+} else {
+  console.log("Cloudinary not configured - using placeholder images");
+}
 
 
 

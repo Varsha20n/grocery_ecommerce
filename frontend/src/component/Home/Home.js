@@ -1,6 +1,6 @@
 import React,{Fragment,useEffect} from 'react'
 import "./Home.css";
-import { CgMouse } from "react-icons/all";
+import { CgMouse } from "react-icons/cg";
 import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";

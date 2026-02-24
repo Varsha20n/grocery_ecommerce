@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import "./orderSuccess.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../actions/cartAction";
 
 const OrderSuccess = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Clear cart items from localStorage and Redux state
+    dispatch(clearCart());
+  }, [dispatch]);
+
   return (
     <div className="orderSuccess">
       <CheckCircleIcon />

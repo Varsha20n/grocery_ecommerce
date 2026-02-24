@@ -18,12 +18,12 @@ const Shipping = ({ history }) => {
   const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
 
-  const [address, setAddress] = useState(shippingInfo.address);
-  const [city, setCity] = useState(shippingInfo.city);
-  const [state, setState] = useState(shippingInfo.state);
-  const [country, setCountry] = useState(shippingInfo.country);
-  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
-  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  const [address, setAddress] = useState(shippingInfo.address || "");
+  const [city, setCity] = useState(shippingInfo.city || "");
+  const [stateValue, setStateValue] = useState(shippingInfo.state || "");
+  const [country, setCountry] = useState(shippingInfo.country || "");
+  const [pinCode, setPinCode] = useState(shippingInfo.pinCode || "");
+  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo || "");
 
   const shippingSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const Shipping = ({ history }) => {
       return;
     }
     dispatch(
-      saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
+      saveShippingInfo({ address, city, state: stateValue, country, pinCode, phoneNo })
     );
     history.push("/order/confirm");
   };
@@ -122,8 +122,8 @@ const Shipping = ({ history }) => {
 
                 <select
                   required
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
+                  value={stateValue}
+                  onChange={(e) => setStateValue(e.target.value)}
                 >
                   <option value="">State</option>
                   {State &&
@@ -140,7 +140,7 @@ const Shipping = ({ history }) => {
               type="submit"
               value="Continue"
               className="shippingBtn"
-              disabled={state ? false : true}
+              disabled={!stateValue || !country}
             />
           </form>
         </div>

@@ -32,8 +32,30 @@ const Payment = ({ history }) => {
   const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.newOrder);
 
+  // Redirect if no order info
+  useEffect(() => {
+    if (!orderInfo) {
+      history.push("/order/confirm");
+    }
+  }, [orderInfo, history]);
+
   const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100),
+    amount: orderInfo ? Math.round(orderInfo.totalPrice * 100) : 0,
+  };
+
+  const stripeElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#424770",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+      },
+      invalid: {
+        color: "#9e2146",
+      },
+    },
   };
 
   const order = {
@@ -123,22 +145,23 @@ const Payment = ({ history }) => {
           <Typography>Card Info</Typography>
           <div>
             <CreditCardIcon />
-            <CardNumberElement className="paymentInput" />
+            <CardNumberElement className="paymentInput" options={stripeElementOptions} />
           </div>
           <div>
             <EventIcon />
-            <CardExpiryElement className="paymentInput" />
+            <CardExpiryElement className="paymentInput" options={stripeElementOptions} />
           </div>
           <div>
             <VpnKeyIcon />
-            <CardCvcElement className="paymentInput" />
+            <CardCvcElement className="paymentInput" options={stripeElementOptions} />
           </div>
 
           <input
             type="submit"
-            value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+            value={orderInfo ? `Pay - ₹${orderInfo.totalPrice}` : "Pay Now"}
             ref={payBtn}
             className="paymentFormBtn"
+            disabled={!orderInfo}
           />
         </form>
       </div>
