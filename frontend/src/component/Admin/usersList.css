@@ -1,4 +1,4 @@
-.productListContainer {
+.usersListContainer {
   width: 100%;
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
@@ -8,44 +8,39 @@
   height: 100vh;
 }
 
-#productListHeading {
-  font: 400 2rem "Roboto";
+.usersListContainer h1 {
+  color: rgba(0, 0, 0, 0.733);
+  font: 300 2rem "Roboto";
+  text-align: center;
   padding: 0.5vmax;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.637);
-  transition: all 0.5s;
 }
 
-#productListHeading:hover {
-  color: #2ecc71;
-}
-
-.productListTable {
+.usersListTable {
   background-color: white;
   border: none;
 }
 
-.productListTable div {
+.usersListTable div {
   font: 300 1vmax "Roboto";
   color: rgba(0, 0, 0, 0.678);
   border: none;
 }
 
-.productListTable a {
+.usersListTable a {
   color: rgba(0, 0, 0, 0.527);
   transition: all 0.5s;
 }
 
-.productListTable a:hover {
+.usersListTable a:hover {
   color: #2ecc71;
 }
 
-.productListTable button {
+.usersListTable button {
   color: rgba(0, 0, 0, 0.527);
   transition: all 0.5s;
 }
 
-.productListTable button:hover {
+.usersListTable button:hover {
   color: #2ecc71;
 }
 
@@ -64,17 +59,17 @@
 }
 
 @media screen and (max-width: 600px) {
-  .productListContainer {
+  .usersListContainer {
     width: 100vw;
     border-left: none;
   }
 
-  #productListHeading {
-    font: 400 6vw "Roboto";
+  .usersListContainer h1 {
+    font: 300 6vw "Roboto";
     padding: 4vw;
   }
 
-  .productListTable div {
+  .usersListTable div {
     font: 300 4vw "Roboto";
   }
 

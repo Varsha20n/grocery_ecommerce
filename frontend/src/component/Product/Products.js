@@ -11,16 +11,12 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 
 const categories = [
-  "Wheat",
-    "Oil",
-    "Sugar",
-    "Pulse",
-    "Refine",
-    "Biscuit",
-    "Horlicks",
-    "Rice",
-    "Soap",
-    "Sampoo"
+  "Fruits",
+  "Vegetables",
+  "Dairy",
+  "Bakery",
+  "Grocery",
+  "Beverages",
 ];
 
 const Products = ({ match }) => {
@@ -51,7 +47,30 @@ const Products = ({ match }) => {
 
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
+    setCurrentPage(1);
   };
+
+  const categoryHandler = (cat) => {
+    if (category === cat) {
+      setCategory("");
+    } else {
+      setCategory(cat);
+    }
+    setCurrentPage(1);
+  };
+
+  const ratingsHandler = (event, newRating) => {
+    setRatings(newRating);
+    setCurrentPage(1);
+  };
+
+  const clearFilters = () => {
+    setPrice([0, 25000]);
+    setCategory("");
+    setRatings(0);
+    setCurrentPage(1);
+  };
+
   let count = filteredProductsCount;
 
   useEffect(() => {
@@ -69,7 +88,7 @@ const Products = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="PRODUCTS -- ECOMMERCE" />
+          <MetaData title="Products -- Fresh Grocery Store" />
           <h2 className="productsHeading">Products</h2>
 
           <div className="products">
@@ -92,13 +111,13 @@ const Products = ({ match }) => {
 
             <Typography>Categories</Typography>
             <ul className="categoryBox">
-              {categories.map((category) => (
+              {categories.map((cat) => (
                 <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
+                  className={`category-link ${category === cat ? "active" : ""}`}
+                  key={cat}
+                  onClick={() => categoryHandler(cat)}
                 >
-                  {category}
+                  {cat}
                 </li>
               ))}
             </ul>
@@ -107,15 +126,17 @@ const Products = ({ match }) => {
               <Typography component="legend">Ratings Above</Typography>
               <Slider
                 value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
+                onChange={ratingsHandler}
                 aria-labelledby="continuous-slider"
                 valueLabelDisplay="auto"
                 min={0}
                 max={5}
               />
             </fieldset>
+
+            <button className="clearFiltersBtn" onClick={clearFilters}>
+              Clear Filters
+            </button>
           </div>
           {resultPerPage < count && (
             <div className="paginationBox">

@@ -1,50 +1,54 @@
 
 import React from "react";
 import "./aboutSection.css";
-import { Button, Typography, Avatar } from "@material-ui/core";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import { Link } from "react-router-dom";
-
+import { Typography } from "@material-ui/core";
 
 const About = () => {
-  const visitInstagram = () => {
-    window.location = "";
-  };
   return (
     <div className="aboutSection">
-      <div></div>
       <div className="aboutSectionGradient"></div>
       <div className="aboutSectionContainer">
         <Typography component="h1">About Us</Typography>
 
-        <div>
-          <div>
-            <Avatar
-              style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" }}
-              src="https://res.cloudinary.com/dcphgmd8y/image/upload/v1635411865/avatars/sq1p3r1kg67qss08njw0.jpg"
-              alt="Founder"
-            />
-            <Typography>kanchan kumar</Typography>
-            <Button onClick={visitInstagram} color="primary">
-              Visit Instagram
-            </Button>
+        <div className="aboutContent">
+          <div className="aboutCard">
+            <Typography component="h2">Welcome to Grocery Mart</Typography>
             <span>
-              This is a sample wesbite made by @kanchankr.
+              Grocery Mart is your trusted online grocery store, bringing fresh produce, pantry staples, and household essentials right to your doorstep. We make shopping for groceries easy, convenient, and affordable.
             </span>
           </div>
-          <div className="aboutSectionContainer2">
-            <Typography component="h2">Follow on</Typography>
-            {/* <a
-              href="https://www.youtube.com"
-              target="blank"
-            >
-              <YouTubeIcon className="youtubeSvgIcon" />
-            </a> */}
 
-            {/* <a href="https://instagram.com/kanchan" target="blank">
-              <InstagramIcon className="instagramSvgIcon" />
-            </a> */}
+          <div className="aboutCard">
+            <Typography component="h2">What We Offer</Typography>
+            <div className="featuresList">
+              <div className="featureItem">
+                <span className="featureIcon">🥬</span>
+                <span>Fresh Fruits & Vegetables</span>
+              </div>
+              <div className="featureItem">
+                <span className="featureIcon">🥛</span>
+                <span>Dairy & Bakery Products</span>
+              </div>
+              <div className="featureItem">
+                <span className="featureIcon">🍚</span>
+                <span>Staples & Grains</span>
+              </div>
+              <div className="featureItem">
+                <span className="featureIcon">🧴</span>
+                <span>Personal Care & Household</span>
+              </div>
+              <div className="featureItem">
+                <span className="featureIcon">🚚</span>
+                <span>Fast Home Delivery</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="aboutCard">
+            <Typography component="h2">Why Shop With Us?</Typography>
+            <span>
+              We source our products directly from trusted farmers and suppliers to ensure you get the freshest items every time. With competitive prices, easy returns, and reliable delivery, Grocery Mart is the smart choice for all your grocery needs.
+            </span>
           </div>
         </div>
       </div>

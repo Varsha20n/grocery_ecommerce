@@ -1,124 +1,166 @@
 .aboutSection {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   max-width: 100%;
-  background-color: white;
-  display: grid;
-  grid-template-columns: 4fr 4fr;
-  position: fixed;
-}
-
-.aboutSectionGradient {
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(78, 81, 255),
-    rgb(74, 137, 189)
-  );
-}
-
-.aboutSectionContainer {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background-color: rgb(255, 255, 255);
-  width: 80vw;
-  height: 80vh;
-  transform: translateX(-50%) translateY(-50%);
-  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.192);
-
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.aboutSectionContainer > h1 {
-  font: 400 3vmax "Roboto";
-  color: tomato;
-  margin: 2vmax;
-}
-
-.aboutSectionContainer > div {
-  display: flex;
-  width: 100%;
-}
-
-.aboutSectionContainer > div > div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2vmax;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.aboutSectionContainer > div > div > p {
-  color: rgba(0, 0, 0, 0.623);
-  font: 100 1vmax "Roboto";
+.aboutSectionGradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 100%;
+  height: 300px;
+  position: relative;
 }
 
-.aboutSectionContainer > div > div > button {
-  margin: 1vmax 0;
+.aboutSectionContainer {
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  max-width: 1200px;
+  padding: 4vmax;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  margin-top: -100px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4vmax;
 }
 
-.aboutSectionContainer > div > div > span {
-  font: 100 1vmax "Roboto";
-  color: rgba(0, 0, 0, 0.616);
+.aboutSectionContainer > h1 {
+  font: 600 3.5vmax "Roboto";
+  color: #667eea;
+  margin: 2vmax 0 3vmax 0;
   text-align: center;
-  width: 80%;
+  position: relative;
 }
 
-.aboutSectionContainer2 {
-  border-left: 1px solid rgba(0, 0, 0, 0.116);
+.aboutSectionContainer > h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  border-radius: 2px;
 }
 
-.aboutSectionContainer2 > h2 {
-  color: rgba(0, 0, 0, 0.623);
-  font: 100 2vmax "Roboto";
-  margin: 2vmax;
+.aboutContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2vmax;
+  width: 100%;
+  margin-top: 2vmax;
 }
 
-.aboutSectionContainer2 > a > svg {
-  font-size: 4vmax;
+.aboutCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 2.5vmax;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
-.youtubeSvgIcon {
-  color: tomato;
+.aboutCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-.instagramSvgIcon {
-  color: rgb(144, 81, 202);
+.aboutCard > h2 {
+  color: #667eea;
+  font: 600 1.8vmax "Roboto";
+  margin-bottom: 1.5vmax;
+  position: relative;
+  padding-bottom: 1vmax;
 }
 
-@media screen and (max-width: 600px) {
-  .aboutSectionContainer > div {
-    display: block;
+.aboutCard > h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.aboutCard > span {
+  font: 400 1.1vmax "Roboto";
+  color: #555;
+  line-height: 1.8;
+  display: block;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 1vmax;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 1vmax;
+  padding: 0.8vmax;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.featureItem:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.featureIcon {
+  font-size: 1.5vmax;
+}
+
+.featureItem > span:last-child {
+  font: 400 1vmax "Roboto";
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutSectionGradient {
+    height: 200px;
+  }
+
+  .aboutSectionContainer {
+    margin-top: -60px;
+    padding: 3vmax;
   }
 
   .aboutSectionContainer > h1 {
-    font: 400 5vmax "Roboto";
-    margin: 3vmax;
+    font: 600 5vmax "Roboto";
   }
 
-  .aboutSectionContainer > div > div > p {
-    font: 100 2vmax "Roboto";
+  .aboutContent {
+    grid-template-columns: 1fr;
   }
 
-  .aboutSectionContainer > div > div > span {
-    font: 100 1.4vmax "Roboto";
-    width: 70%;
+  .aboutCard {
+    padding: 2vmax;
   }
 
-  .aboutSectionContainer2 {
-    border-left: none;
+  .aboutCard > h2 {
+    font: 600 2.5vmax "Roboto";
   }
 
-  .aboutSectionContainer2 > h2 {
-    font: 100 3vmax "Roboto";
-    margin: 2vmax;
+  .aboutCard > span {
+    font: 400 1.8vmax "Roboto";
   }
 
-  .aboutSectionContainer2 > a > svg {
-    font-size: 6vmax;
-    margin: 1vmax;
+  .featureItem > span:last-child {
+    font: 400 1.5vmax "Roboto";
   }
 }

@@ -8,36 +8,46 @@
   justify-content: center;
   align-items: center;
 }
+
 .PageNotFound > svg {
   font-size: 7vmax;
-  color: tomato;
+  color: #2ecc71;
 }
+
 .PageNotFound > p {
   font-size: 2vmax;
+  margin: 1vmax;
+  color: rgba(0, 0, 0, 0.7);
 }
+
 .PageNotFound > a {
-  background-color: rgb(51, 51, 51);
+  background-color: #2ecc71;
   color: white;
   border: none;
   padding: 1vmax 3vmax;
   cursor: pointer;
   font: 400 1vmax "Roboto";
   text-decoration: none;
-  margin: 2vmax;
+  border-radius: 30px;
+  transition: all 0.3s;
+}
+
+.PageNotFound > a:hover {
+  background-color: #27ae60;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 600px) {
-  .PageNotFound > a {
-    padding: 3vw 6vw;
-    font: 400 4vw "Roboto";
-    margin: 2vmax;
-  }
-
   .PageNotFound > svg {
     font-size: 20vw;
   }
+
   .PageNotFound > p {
-    margin: 2vmax;
     font-size: 5vw;
+  }
+
+  .PageNotFound > a {
+    font-size: 4vw;
+    padding: 4vw;
   }
 }

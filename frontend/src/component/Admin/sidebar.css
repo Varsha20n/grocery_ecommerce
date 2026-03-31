@@ -8,31 +8,35 @@
 .sidebar > a:first-child {
   padding: 0;
 }
+
 .sidebar > a > img {
   width: 100%;
   transition: all 0.5s;
 }
 
 .sidebar > a > img:hover {
-  filter: drop-shadow(0 0 10px tomato);
+  filter: drop-shadow(0 0 10px #2ecc71);
 }
-.sidebar a {
+
+.sidebar > a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.493);
   font: 200 1rem "Roboto";
-  padding: 2rem;
+  padding: 1.5rem;
   transition: all 0.5s;
 }
-.sidebar a:hover {
-  color: tomato;
+
+.sidebar > a:hover {
+  color: #2ecc71;
   transform: scale(1.1);
 }
 
-.sidebar a > P {
+.sidebar > a > p {
   display: flex;
   align-items: center;
 }
-.sidebar a > p > svg {
+
+.sidebar > a > p > svg {
   margin-right: 0.5rem;
 }
 

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -8,6 +8,17 @@ import "./Header.css";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
+  const [keyword, setKeyword] = useState("");
+  const history = useHistory();
+
+  const searchSubmitHandler = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+      history.push(`/products/${keyword}`);
+    } else {
+      history.push("/products");
+    }
+  };
 
   return (
     <header className="header">
@@ -18,10 +29,17 @@ const Header = () => {
         <Link to="/" className="logo-text">Grocer</Link>
       </div>
 
-      <div className="search-box">
-        <input type="text" placeholder="Search products..." />
-        <SearchIcon className="search-icon" />
-      </div>
+      <form className="search-box" onSubmit={searchSubmitHandler}>
+        <input 
+          type="text" 
+          placeholder="Search products..." 
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+        <button type="submit" className="search-btn">
+          <SearchIcon className="search-icon" />
+        </button>
+      </form>
 
       <nav className="nav-links">
         <Link to="/" className="nav-link">Home</Link>

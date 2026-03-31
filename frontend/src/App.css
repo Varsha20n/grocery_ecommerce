@@ -3,9 +3,9 @@
   scroll-behavior: smooth;
 }
 
-/* body {
-  cursor: url("./images/cursor.png"), auto;
-} */
+body {
+  font-family: "Roboto", sans-serif;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

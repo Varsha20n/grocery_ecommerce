@@ -7,7 +7,22 @@
   background-color: rgba(0, 0, 0, 0.349);
 }
 
-.MuiStepConnector-active,
-.MuiStepConnector-completed {
-  background-color: tomato;
+.MuiStepLabel-label {
+  color: rgba(0, 0, 0, 0.649) !important;
+}
+
+.MuiStepLabel-label.MuiStepLabel-active {
+  color: #2ecc71 !important;
+}
+
+.MuiStepLabel-label.MuiStepLabel-completed {
+  color: #2ecc71 !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed {
+  color: #2ecc71 !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-active {
+  color: #2ecc71 !important;
 }

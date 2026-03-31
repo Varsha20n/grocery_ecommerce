@@ -5,45 +5,50 @@
 .orderDetailsContainer > h1 {
   font: 300 3vmax "Roboto";
   margin: 4vmax 0;
-  color: tomato;
+  color: #2ecc71;
 }
 
 .orderDetailsContainer {
   padding: 5vmax;
-  padding-bottom: 0%;
+  padding-top: 0;
 }
 
 .orderDetailsContainer > p {
   font: 400 1.8vmax "Roboto";
 }
 
-.orderDetailsContainerBox,
-.orderDetailsCartItemsContainer {
+.orderDetailsContainerBox {
   margin: 2vmax;
 }
 
 .orderDetailsContainerBox > div {
   display: flex;
-  margin: 1vmax 0;
+  margin: 1vmax;
 }
 
 .orderDetailsContainerBox > div > p {
   font: 400 1vmax "Roboto";
   color: black;
 }
+
 .orderDetailsContainerBox > div > span {
   margin: 0 1vmax;
   font: 100 1vmax "Roboto";
   color: #575757;
 }
 
+.orderDetailsCartItems {
+  padding: 5vmax;
+  padding-top: 2vmax;
+}
+
 .orderDetailsCartItems > p {
   font: 400 1.8vmax "Roboto";
 }
 
-.orderDetailsCartItems {
-  padding: 2vmax 5vmax;
-  border-top: 1px solid rgba(0, 0, 0, 0.164);
+.orderDetailsCartItemsContainer {
+  max-height: 20vmax;
+  overflow-y: auto;
 }
 
 .orderDetailsCartItemsContainer > div {
@@ -62,6 +67,7 @@
   margin: 0 2vmax;
   width: 60%;
   text-decoration: none;
+  font: 400 1vmax "Roboto";
 }
 
 .orderDetailsCartItemsContainer > div > span {
@@ -70,17 +76,23 @@
 }
 
 @media screen and (max-width: 600px) {
-  .orderDetailsContainer > p {
+  .orderDetailsContainer > h1 {
     font: 400 6vw "Roboto";
   }
 
+  .orderDetailsContainer > p {
+    font: 400 4vw "Roboto";
+  }
+
   .orderDetailsContainerBox > div {
+    display: flex;
     margin: 6vw 0;
   }
 
   .orderDetailsContainerBox > div > p {
     font: 400 4vw "Roboto";
   }
+
   .orderDetailsContainerBox > div > span {
     font: 100 4vw "Roboto";
   }
@@ -89,9 +101,13 @@
     font: 400 6vw "Roboto";
   }
 
+  .orderDetailsCartItemsContainer {
+    max-height: 50vw;
+  }
+
   .orderDetailsCartItemsContainer > div {
     font: 400 4vw "Roboto";
-    margin: 4vw 0;
+    margin: 6vw 0;
   }
 
   .orderDetailsCartItemsContainer > div > img {
@@ -99,8 +115,7 @@
   }
 
   .orderDetailsCartItemsContainer > div > a {
-    margin: 2vw;
-    width: 30%;
+    font: 400 4vw "Roboto";
   }
 
   .orderDetailsCartItemsContainer > div > span {

@@ -37,7 +37,6 @@
   padding: 2vmax;
   justify-content: space-evenly;
   height: 70%;
-  transition: all 0.5s;
 }
 
 .updateProfileForm > div {
@@ -67,8 +66,8 @@
 #updateProfileImage > img {
   width: 3vmax;
   border-radius: 100%;
-  margin: 1vmax;
 }
+
 #updateProfileImage > input {
   display: flex;
   padding: 0%;
@@ -94,7 +93,7 @@
 
 .updateProfileBtn {
   border: none;
-  background-color: tomato;
+  background-color: #2ecc71;
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -107,16 +106,23 @@
 }
 
 .updateProfileBtn:hover {
-  background-color: rgb(179, 66, 46);
+  background-color: #27ae60;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 600px) {
   .updateProfileContainer {
     background-color: white;
   }
+
   .updateProfileBox {
     width: 100vw;
     height: 95vh;
+  }
+
+  .updateProfileHeading {
+    font: 400 2.2vmax "Roboto";
+    padding: 2vmax;
   }
 
   .updateProfileForm {

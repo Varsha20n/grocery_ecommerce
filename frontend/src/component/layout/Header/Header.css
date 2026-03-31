@@ -45,9 +45,22 @@
   font-size: 1rem;
 }
 
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
 .search-icon {
   color: #666;
   cursor: pointer;
+}
+
+.search-btn:hover .search-icon {
+  color: #2ecc71;
 }
 
 .nav-links {
